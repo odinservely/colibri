@@ -7,7 +7,7 @@ import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared';
 import {LoginModalService, User} from 'app/core';
 import { Register } from './register.service';
 import {Profile} from 'app/shared/model/profile.model';
-import {ProfileService} from "app/entities/profile";
+import {ProfileService} from 'app/entities/profile';
 
 @Component({
     selector: 'jhi-register',
@@ -56,15 +56,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
                 this.registerService.save(this.registerAccount).subscribe(
                     (res: HttpResponse<User>) => {
                         this.success = true;
-                        this.profile.userId = res.body.id;
-                        this.profileService.create(this.profile).subscribe(
-                            (res: HttpResponse<Profile>) => {
-                                console.log(res.body);
-                            },
-                            (res: HttpErrorResponse) => {
-                                console.log(" Fail : " + res.message);
-                            }
-                        )
+                        // this.profile.userId = res.body.id;
+                        // this.profileService.create(this.profile).subscribe(
+                        //     (res: HttpResponse<Profile>) => {
+                        //         console.log(res.body);
+                        //     },
+                        //     (res: HttpErrorResponse) => {
+                        //         console.log(" Fail : " + res.message);
+                        //     }
+                        // )
                     },
                     response => this.processError(response)
                 );
