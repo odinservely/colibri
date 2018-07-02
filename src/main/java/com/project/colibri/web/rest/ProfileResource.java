@@ -110,6 +110,20 @@ public class ProfileResource {
     }
 
     /**
+     * GET  /profiles/:id : get the "id" profile.
+     *
+     * @param userId the id of the profileDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the profileDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/profiles/findCurrentProfile/{userId}")
+    @Timed
+    public ResponseEntity<ProfileDTO> getCurrentProfile(@PathVariable Long userId) {
+        log.debug("REST request to get Profile : {}", userId);
+        Optional<ProfileDTO> profileDTO = profileService.findByUserId(userId);
+        return ResponseUtil.wrapOrNotFound(profileDTO);
+    }
+
+    /**
      * DELETE  /profiles/:id : delete the "id" profile.
      *
      * @param id the id of the profileDTO to delete

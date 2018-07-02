@@ -68,7 +68,7 @@ public class ProfileServiceImpl implements ProfileService {
      *  get all the profiles where Association is null.
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<ProfileDTO> findAllWhereAssociationIsNull() {
         log.debug("Request to get all profiles where Association is null");
         return StreamSupport
@@ -101,5 +101,19 @@ public class ProfileServiceImpl implements ProfileService {
     public void delete(Long id) {
         log.debug("Request to delete Profile : {}", id);
         profileRepository.deleteById(id);
+    }
+
+    /**
+     * Get one profile by id.
+     *
+     * @param userId the id of the entity
+     * @return the entity
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<ProfileDTO> findByUserId(Long userId) {
+        log.debug("Request to get Profile : {}", userId);
+        return profileRepository.findByUserId(userId)
+            .map(profileMapper::toDto);
     }
 }

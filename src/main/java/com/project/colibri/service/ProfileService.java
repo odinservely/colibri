@@ -46,4 +46,6 @@ public interface ProfileService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    Optional<ProfileDTO> findByUserId(Long userId);
 }
