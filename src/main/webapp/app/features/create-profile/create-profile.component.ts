@@ -10,8 +10,10 @@ import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
   styles: []
 })
 export class CreateProfileComponent implements OnInit {
-    currentAccount: Account;
+    account: Account;
     profile: Profile;
+    error: boolean;
+    success: boolean;
 
   constructor(
       private principal: Principal,
@@ -20,20 +22,22 @@ export class CreateProfileComponent implements OnInit {
 
   ngOnInit() {
       this.principal.identity().then( account => {
-          this.currentAccount = account;
+          this.account = account;
       });
       this.profile = new Profile();
   }
 
   completeProfile() {
-        this.profile.userId = parseInt(this.currentAccount.id);
+        this.profile.userId = parseInt(this.account.id);
         console.log(this.profile);
         this.profileService.create(this.profile).subscribe (
             (res: HttpResponse<Profile>) => {
                 console.log(res.body);
+                this.success = true;
             },
             (res: HttpErrorResponse) => {
                 console.log(res.message);
+                this.error = true;
             }
         );
   }
