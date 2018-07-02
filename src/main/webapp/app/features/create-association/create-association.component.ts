@@ -4,7 +4,7 @@ import {AssociationService} from 'app/entities/association';
 import {ProfileService} from 'app/entities/profile';
 import {Profile} from 'app/shared/model/profile.model';
 import {Association} from 'app/shared/model/association.model';
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'jhi-create-association',
