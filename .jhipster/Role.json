@@ -1,0 +1,39 @@
+{
+    "name": "Role",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "profile",
+            "otherEntityName": "profile",
+            "otherEntityRelationshipName": "role"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "association",
+            "otherEntityName": "association",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20180702125501",
+    "entityTableName": "role",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

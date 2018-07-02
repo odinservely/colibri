@@ -1,0 +1,66 @@
+entity Profile {
+    birthDate LocalDate required
+    address String required
+    postcode String required
+    city String required
+    phone String
+}
+
+entity Category {
+	title String required
+    description String
+}
+
+entity Type {
+	title String required
+    description String
+    picture String
+}
+
+entity Association {
+	name String required
+    description String required
+    picture String
+    address String required
+    postcode String required
+    city String required
+}
+
+entity Event {
+	name String required
+    description String required
+    picture String
+    location String required
+    startDate LocalDate required
+    endDate LocalDate required
+    recurrence Integer
+}
+
+entity Role {
+	title String required
+    description String
+}
+
+relationship OneToOne {
+    Association { president required} to Profile { association }
+    Profile { user } to User
+}
+
+relationship OneToMany {
+	Type { association } to Association { type }
+    Association { role } to Role { association }
+    Role { profile } to Profile { role }
+    Association { category } to Category { association }
+    Category { profile } to Profile { category }
+}
+
+relationship ManyToMany {
+    Association { event } to Event { association }
+    Event { participant } to Profile { event }
+	Association { member } to Profile { association }
+}
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

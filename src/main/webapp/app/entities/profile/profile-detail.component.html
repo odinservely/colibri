@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="profile">
+            <h2><span jhiTranslate="colibriApp.profile.detail.title">Profile</span> {{profile.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="colibriApp.profile.birthDate">Birth Date</span></dt>
+                <dd>
+                    <span>{{profile.birthDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.address">Address</span></dt>
+                <dd>
+                    <span>{{profile.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.postcode">Postcode</span></dt>
+                <dd>
+                    <span>{{profile.postcode}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.city">City</span></dt>
+                <dd>
+                    <span>{{profile.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.phone">Phone</span></dt>
+                <dd>
+                    <span>{{profile.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.user">User</span></dt>
+                <dd>
+                    {{profile.userId}}
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.role">Role</span></dt>
+                <dd>
+                    <div *ngIf="profile.roleId">
+                        <a [routerLink]="['/role', profile.roleId, 'view']">{{profile.roleId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.profile.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="profile.categoryId">
+                        <a [routerLink]="['/category', profile.categoryId, 'view']">{{profile.categoryId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/profile', profile.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

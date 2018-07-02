@@ -1,0 +1,32 @@
+
+{
+    "colibriApp": {
+        "profile" : {
+            "home": {
+                "title": "Profiles",
+                "createLabel": "Créer un nouveau Profile",
+                "createOrEditLabel": "Créer ou éditer un Profile"
+            },
+            "created": "Un nouveau Profile a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Profile avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Profile avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Profile {{ id }} ?"
+            },
+            "detail": {
+                "title": "Profile"
+            },
+            "birthDate": "Birth Date",
+            "address": "Address",
+            "postcode": "Postcode",
+            "city": "City",
+            "phone": "Phone",
+            "user": "User",
+            "association": "Association",
+            "role": "Role",
+            "category": "Category",
+            "event": "Event",
+            "association": "Association"
+        }
+    }
+}
