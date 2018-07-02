@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="association">
+            <h2><span jhiTranslate="colibriApp.association.detail.title">Association</span> {{association.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="colibriApp.association.name">Name</span></dt>
+                <dd>
+                    <span>{{association.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.description">Description</span></dt>
+                <dd>
+                    <span>{{association.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.picture">Picture</span></dt>
+                <dd>
+                    <span>{{association.picture}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.address">Address</span></dt>
+                <dd>
+                    <span>{{association.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.postcode">Postcode</span></dt>
+                <dd>
+                    <span>{{association.postcode}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.city">City</span></dt>
+                <dd>
+                    <span>{{association.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.president">President</span></dt>
+                <dd>
+                    <div *ngIf="association.presidentId">
+                        <a [routerLink]="['/profile', association.presidentId, 'view']">{{association.presidentId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.event">Event</span></dt>
+                <dd>
+                    <span *ngFor="let event of association.events; let last = last">
+                        <a [routerLink]="['/event', event?.id, 'view' ]">{{event.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.member">Member</span></dt>
+                <dd>
+                    <span *ngFor="let member of association.members; let last = last">
+                        <a [routerLink]="['/profile', member?.id, 'view' ]">{{member.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.association.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="association.typeId">
+                        <a [routerLink]="['/type', association.typeId, 'view']">{{association.typeId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/association', association.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

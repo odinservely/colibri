@@ -18,6 +18,7 @@ import { ColibriAccountModule } from './account/account.module';
 import { ColibriEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import {FeaturesModule} from 'app/features/features.module';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         ColibriCoreModule,
         ColibriHomeModule,
         ColibriAccountModule,
-        ColibriEntityModule
+        ColibriEntityModule,
+        FeaturesModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],

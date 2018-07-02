@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="event">
+            <h2><span jhiTranslate="colibriApp.event.detail.title">Event</span> {{event.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="colibriApp.event.name">Name</span></dt>
+                <dd>
+                    <span>{{event.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.description">Description</span></dt>
+                <dd>
+                    <span>{{event.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.picture">Picture</span></dt>
+                <dd>
+                    <span>{{event.picture}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.location">Location</span></dt>
+                <dd>
+                    <span>{{event.location}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{event.startDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{event.endDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.recurrence">Recurrence</span></dt>
+                <dd>
+                    <span>{{event.recurrence}}</span>
+                </dd>
+                <dt><span jhiTranslate="colibriApp.event.participant">Participant</span></dt>
+                <dd>
+                    <span *ngFor="let participant of event.participants; let last = last">
+                        <a [routerLink]="['/profile', participant?.id, 'view' ]">{{participant.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/event', event.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

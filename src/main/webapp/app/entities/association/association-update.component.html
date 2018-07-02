@@ -1,0 +1,116 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-association-heading" jhiTranslate="colibriApp.association.home.createOrEditLabel">Create or edit a Association</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!association.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="association.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="association.name" required/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="association.description" required/>
+                    <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.picture" for="field_picture">Picture</label>
+                    <input type="text" class="form-control" name="picture" id="field_picture"
+                        [(ngModel)]="association.picture" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.address" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                        [(ngModel)]="association.address" required/>
+                    <div [hidden]="!(editForm.controls.address?.dirty && editForm.controls.address?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.address?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.postcode" for="field_postcode">Postcode</label>
+                    <input type="text" class="form-control" name="postcode" id="field_postcode"
+                        [(ngModel)]="association.postcode" required/>
+                    <div [hidden]="!(editForm.controls.postcode?.dirty && editForm.controls.postcode?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.postcode?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="association.city" required/>
+                    <div [hidden]="!(editForm.controls.city?.dirty && editForm.controls.city?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.city?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.president" for="field_president">President</label>
+                    <select class="form-control" id="field_president" name="president" [(ngModel)]="association.presidentId" required>
+                        <option *ngIf="!editForm.value.president" [ngValue]="null" selected></option>
+                        <option [ngValue]="profileOption.id" *ngFor="let profileOption of presidents; trackBy: trackProfileById">{{profileOption.id}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.president?.dirty && editForm.controls.president?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.president?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="colibriApp.association.event" for="field_event">Event</label>
+                    <select class="form-control" id="field_event" multiple name="event" [(ngModel)]="association.events">
+                        <option [ngValue]="getSelected(association.events, eventOption)" *ngFor="let eventOption of events; trackBy: trackEventById">{{eventOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="colibriApp.association.member" for="field_member">Member</label>
+                    <select class="form-control" id="field_member" multiple name="member" [(ngModel)]="association.members">
+                        <option [ngValue]="getSelected(association.members, profileOption)" *ngFor="let profileOption of profiles; trackBy: trackProfileById">{{profileOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="colibriApp.association.type" for="field_type">Type</label>
+                    <select class="form-control" id="field_type" name="type" [(ngModel)]="association.typeId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="typeOption.id" *ngFor="let typeOption of types; trackBy: trackTypeById">{{typeOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

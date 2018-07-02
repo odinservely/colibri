@@ -30,17 +30,17 @@
                 <div class="form-group">
                     <label class="form-control-label" for="login" jhiTranslate="global.form.username">Username</label>
                     <input type="text" class="form-control" [(ngModel)]="registerAccount.login" id="login" name="login" #login="ngModel" placeholder="{{'global.form.username.placeholder' | translate}}"
-                            required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+                           required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
                     <div *ngIf="login.dirty && login.invalid">
                         <small class="form-text text-danger" *ngIf="login.errors.required" jhiTranslate="register.messages.validate.login.required">
                             Your username is required.
                         </small>
                         <small class="form-text text-danger" *ngIf="login.errors.minlength"
-                                jhiTranslate="register.messages.validate.login.minlength">
+                               jhiTranslate="register.messages.validate.login.minlength">
                             Your username is required to be at least 1 character.
                         </small>
                         <small class="form-text text-danger" *ngIf="login.errors.maxlength"
-                                jhiTranslate="register.messages.validate.login.maxlength">
+                               jhiTranslate="register.messages.validate.login.maxlength">
                             Your username cannot be longer than 50 characters.
                         </small>
                         <small class="form-text text-danger" *ngIf="login.errors.pattern"
@@ -50,12 +50,52 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" for="lastName" jhiTranslate="global.form.lastname">Last Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="registerAccount.lastName" id="lastName" name="lastName" #lastName="ngModel" placeholder="{{'global.form.lastname.placeholder' | translate}}"
+                           required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="firstName" jhiTranslate="global.form.firstname">First Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="registerAccount.firstName" id="firstName" name="firstName" #firstName="ngModel" placeholder="{{'global.form.firstname.placeholder' | translate}}"
+                           required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="birthDate" jhiTranslate="global.form.birthdate">Birth Date</label>
+                    <div class="input-group">
+                        <input id="birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker  #birthDateDp="ngbDatepicker" [(ngModel)]="profile.birthDate"
+                               required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="address" jhiTranslate="global.form.address">Address</label>
+                    <input type="text" class="form-control" [(ngModel)]="profile.address" id="address" name="address" placeholder="{{'global.form.address.placeholder' | translate}}"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="postcode" jhiTranslate="global.form.postcode">Post Code</label>
+                    <input type="text" class="form-control" [(ngModel)]="profile.postcode" id="postcode" name="postcode"
+                           required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="city" jhiTranslate="global.form.city">City</label>
+                    <input type="text" class="form-control" [(ngModel)]="profile.city" id="city" name="city"
+                           required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="city" jhiTranslate="global.form.phone">City</label>
+                    <input type="text" class="form-control" [(ngModel)]="profile.phone" id="phone" name="phone"
+                           required minlength="1" maxlength="50" pattern="^[_.@0-9-]*$">
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" for="email" jhiTranslate="global.form.email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" #email="ngModel" placeholder="{{'global.form.email.placeholder' | translate}}"
-                            [(ngModel)]="registerAccount.email" minlength=5 maxlength=254 email required>
+                           [(ngModel)]="registerAccount.email" minlength=5 maxlength=254 email required>
                     <div *ngIf="email.dirty && email.invalid">
                         <small class="form-text text-danger" *ngIf="email.errors.required"
-                                jhiTranslate="global.messages.validate.email.required">
+                               jhiTranslate="global.messages.validate.email.required">
                             Your email is required.
                         </small>
                         <small class="form-text text-danger" *ngIf="email.errors.invalid"
@@ -75,18 +115,18 @@
                 <div class="form-group">
                     <label class="form-control-label" for="password" jhiTranslate="global.form.newpassword">New password</label>
                     <input type="password" class="form-control" id="password" name="password" #password="ngModel" placeholder="{{'global.form.newpassword.placeholder' | translate}}"
-                            [(ngModel)]="registerAccount.password" minlength=4 maxlength=50 required>
+                           [(ngModel)]="registerAccount.password" minlength=4 maxlength=50 required>
                     <div *ngIf="password.dirty && password.invalid">
                         <small class="form-text text-danger" *ngIf="password.errors.required"
-                                jhiTranslate="global.messages.validate.newpassword.required">
+                               jhiTranslate="global.messages.validate.newpassword.required">
                             Your password is required.
                         </small>
                         <small class="form-text text-danger" *ngIf="password.errors.minlength"
-                                jhiTranslate="global.messages.validate.newpassword.minlength">
+                               jhiTranslate="global.messages.validate.newpassword.minlength">
                             Your password is required to be at least 4 characters.
                         </small>
                         <small class="form-text text-danger" *ngIf="password.errors.maxlength"
-                                jhiTranslate="global.messages.validate.newpassword.maxlength">
+                               jhiTranslate="global.messages.validate.newpassword.maxlength">
                             Your password cannot be longer than 50 characters.
                         </small>
                     </div>
@@ -95,14 +135,14 @@
                 <div class="form-group">
                     <label class="form-control-label" for="confirmPassword" jhiTranslate="global.form.confirmpassword">New password confirmation</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" #confirmPasswordInput="ngModel" placeholder="{{'global.form.confirmpassword.placeholder' | translate}}"
-                            [(ngModel)]="confirmPassword" minlength=4 maxlength=50 required>
+                           [(ngModel)]="confirmPassword" minlength=4 maxlength=50 required>
                     <div *ngIf="confirmPasswordInput.dirty && confirmPasswordInput.invalid">
                         <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.required"
                                jhiTranslate="global.messages.validate.confirmpassword.required">
                             Your confirmation password is required.
                         </small>
                         <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.minlength"
-                              jhiTranslate="global.messages.validate.confirmpassword.minlength">
+                               jhiTranslate="global.messages.validate.confirmpassword.minlength">
                             Your confirmation password is required to be at least 4 characters.
                         </small>
                         <small class="form-text text-danger" *ngIf="confirmPasswordInput.errors.maxlength"

@@ -4,14 +4,18 @@ import com.project.colibri.domain.Authority;
 import com.project.colibri.domain.User;
 import com.project.colibri.repository.AuthorityRepository;
 import com.project.colibri.config.Constants;
+import com.project.colibri.repository.ProfileRepository;
 import com.project.colibri.repository.UserRepository;
 import com.project.colibri.security.AuthoritiesConstants;
 import com.project.colibri.security.SecurityUtils;
+import com.project.colibri.service.impl.ProfileServiceImpl;
 import com.project.colibri.service.util.RandomUtil;
 import com.project.colibri.service.dto.UserDTO;
 
+import org.hibernate.service.spi.InjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -110,6 +115,7 @@ public class UserService {
         userRepository.save(newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
+
         return newUser;
     }
 

@@ -1,0 +1,33 @@
+
+{
+    "colibriApp": {
+        "association" : {
+            "home": {
+                "title": "Associations",
+                "createLabel": "Create a new Association",
+                "createOrEditLabel": "Create or edit a Association"
+            },
+            "created": "A new Association is created with identifier {{ param }}",
+            "updated": "A Association is updated with identifier {{ param }}",
+            "deleted": "A Association is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Association {{ id }}?"
+            },
+            "detail": {
+                "title": "Association"
+            },
+            "name": "Name",
+            "description": "Description",
+            "picture": "Picture",
+            "address": "Address",
+            "postcode": "Postcode",
+            "city": "City",
+            "president": "President",
+            "role": "Role",
+            "category": "Category",
+            "event": "Event",
+            "member": "Member",
+            "type": "Type"
+        }
+    }
+}

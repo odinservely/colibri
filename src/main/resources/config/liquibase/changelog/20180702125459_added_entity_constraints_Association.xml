@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Association.
+    -->
+    <changeSet id="20180702125459-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="president_id"
+                                 baseTableName="association"
+                                 constraintName="fk_association_president_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profile"/>
+
+        <addForeignKeyConstraint baseColumnNames="associations_id"
+                                 baseTableName="association_event"
+                                 constraintName="fk_association_event_associations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="association"/>
+        <addForeignKeyConstraint baseColumnNames="events_id"
+                                 baseTableName="association_event"
+                                 constraintName="fk_association_event_events_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="event"/>
+        
+        <addForeignKeyConstraint baseColumnNames="associations_id"
+                                 baseTableName="association_member"
+                                 constraintName="fk_association_member_associations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="association"/>
+        <addForeignKeyConstraint baseColumnNames="members_id"
+                                 baseTableName="association_member"
+                                 constraintName="fk_association_member_members_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profile"/>
+        
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="association"
+                                 constraintName="fk_association_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type"/>
+
+    </changeSet>
+</databaseChangeLog>

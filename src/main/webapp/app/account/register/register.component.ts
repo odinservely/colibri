@@ -1,11 +1,13 @@
 import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
 
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared';
-import { LoginModalService } from 'app/core';
+import {LoginModalService, User} from 'app/core';
 import { Register } from './register.service';
+import {Profile} from 'app/shared/model/profile.model';
+import {ProfileService} from "app/entities/profile";
 
 @Component({
     selector: 'jhi-register',
@@ -20,18 +22,21 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     registerAccount: any;
     success: boolean;
     modalRef: NgbModalRef;
+    profile: Profile;
 
     constructor(
         private languageService: JhiLanguageService,
         private loginModalService: LoginModalService,
         private registerService: Register,
         private elementRef: ElementRef,
-        private renderer: Renderer
+        private renderer: Renderer,
+        private profileService: ProfileService
     ) {}
 
     ngOnInit() {
         this.success = false;
         this.registerAccount = {};
+        this.profile = new Profile();
     }
 
     ngAfterViewInit() {
@@ -49,8 +54,17 @@ export class RegisterComponent implements OnInit, AfterViewInit {
             this.languageService.getCurrent().then(key => {
                 this.registerAccount.langKey = key;
                 this.registerService.save(this.registerAccount).subscribe(
-                    () => {
+                    (res: HttpResponse<User>) => {
                         this.success = true;
+                        this.profile.userId = res.body.id;
+                        this.profileService.create(this.profile).subscribe(
+                            (res: HttpResponse<Profile>) => {
+                                console.log(res.body);
+                            },
+                            (res: HttpErrorResponse) => {
+                                console.log(" Fail : " + res.message);
+                            }
+                        )
                     },
                     response => this.processError(response)
                 );
