@@ -29,7 +29,7 @@
                     </a>
                 </li>
             </div>
-            <div *jhiHasAnyAuthority="'ROLE_USER'">
+            <div *jhiHasAnyAuthority="'ROLE_PROFILE'">
                 <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link" routerLink="listing-associations" (click)="collapseNavbar()">
                     <span>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
             </div>
-            <div *jhiHasAnyAuthority="'ROLE_USER'">
+            <div *jhiHasAnyAuthority="'ROLE_PROFILE'">
                 <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link" routerLink="create-association" (click)="collapseNavbar()">
                     <span>

@@ -9,7 +9,7 @@ export const featuresRoute: Routes = [
         component: ListingAssociationsComponent,
         data: {
             pageTitle: 'Liste des associations',
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_PROFILE'],
         },
     },
 
@@ -17,7 +17,7 @@ export const featuresRoute: Routes = [
         path: 'create-association',
         component: CreateAssociationComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_PROFILE'],
             pageTitle: 'Créez votre association'
         },
     },
